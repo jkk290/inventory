@@ -1,0 +1,27 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "An inventory app using Nodejs, Express, and PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkk290/inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jkk290/inventory/issues"
+  },
+  "homepage": "https://github.com/jkk290/inventory#readme",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
