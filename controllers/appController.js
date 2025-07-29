@@ -22,6 +22,16 @@ exports.itemAddGet = async (req, res) => {
     });
 };
 
+exports.itemEditGet = async (req, res) => {
+    const item = await db.getItem(req.params.id);
+    const categories = await db.getAllCategories();
+    res.render('itemEdit', {
+        title: 'Edit Item',
+        item: item,
+        categories: categories
+    });
+};
+
 exports.categoryAddPost = async (req, res) => {
     const category = { name: req.body.categoryName };
     await db.addCategory(category);
@@ -31,5 +41,11 @@ exports.categoryAddPost = async (req, res) => {
 exports.itemAddPost = async (req, res) => {
     const item = { name: req.body.itemName, category: req.body.itemCategory, stock: req.body.itemStock };
     await db.addItem(item);
+    res.redirect('/');
+};
+
+exports.itemEditPost = async (req, res) => {
+    const item = { id: req.params.id, name: req.body.itemName, category: req.body.itemCategory, stock: req.body.itemStock };
+    await db.editItem(item);
     res.redirect('/');
 };

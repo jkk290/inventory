@@ -9,7 +9,7 @@
     <a href="/item/add">Add Item</a>
     <ul>
         <% items.forEach(item => { %>
-            <li>Name: <%= item.name %>, Category: <%= item.category %>, Stock: <%= item.stock %> 
+            <li>Name: <%= item.name %>, Category: <%= item.category %>, Stock: <%= item.stock %> <a href="/item/<%= item.id %>/edit">Edit</a> 
             </li>
         <% }); %>
     </ul>
