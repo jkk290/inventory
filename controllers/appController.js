@@ -8,14 +8,26 @@ exports.itemsListGet = async (req, res) => {
     });
 };
 
+exports.categoryAddGet = (req, res) => {
+    res.render('categoryAdd', {
+        title: 'New Category'
+    });
+};
+
 exports.itemAddGet = (req, res) => {
     res.render('itemAdd', {
-        title: 'Add New Item'
+        title: 'Add Item'
     });
+};
+
+exports.categoryAddPost = async (req, res) => {
+    const category = { name: req.body.categoryName };
+    await db.addCategory(category);
+    res.redirect('/');
 };
 
 exports.itemAddPost = async (req, res) => {
     const item = { name: req.body.itemName, category: req.body.itemCategory, stock: req.body.itemStock };
     await db.addItem(item);
     res.redirect('/');
-}
+};

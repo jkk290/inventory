@@ -9,11 +9,16 @@ async function getAllItems() {
     };    
 };
 
+async function addCategory(category) {
+    await pool.query('INSERT INTO categories (name) VALUES ($1)', [category.name]);
+}
+
 async function addItem(item) {
     await pool.query('INSERT INTO items (name, stock, category) VALUES ($1, $2, $3)', [item.name, item.stock, item.category]);
 }
 
 module.exports = {
     getAllItems,
+    addCategory,
     addItem,
 };
