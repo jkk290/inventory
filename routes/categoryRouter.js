@@ -3,11 +3,11 @@ const categoriesController = require('../controllers/categoriesController');
 
 const categoriesRouter = Router();
 
-categoriesRouter.get('/category', categoriesController.categoryListGet);
-categoriesRouter.get('/category/add', categoriesController.categoryAddGet);
-categoriesRouter.get('/category/:id/edit', categoriesController.categoryEditGet);
-categoriesRouter.post('/category/add', categoriesController.categoryAddPost);
-categoriesRouter.post('/category/:id/edit', categoriesController.categoryEditPost);
-categoriesRouter.post('/category/:id/delete', categoriesController.categoryDeletePost);
+categoriesRouter.get('/', categoriesController.categoryListGet);
+categoriesRouter.get('/add', categoriesController.categoryAddGet);
+categoriesRouter.get('/:id/edit', categoriesController.categoryEditGet);
+categoriesRouter.post('/add', categoriesController.categoryAddPost);
+categoriesRouter.post('/:id/edit', categoriesController.categoryEditPost);
+categoriesRouter.post('/:id/delete', categoriesController.categoryDeletePost);
 
 module.exports = categoriesRouter;

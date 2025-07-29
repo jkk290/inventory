@@ -35,5 +35,6 @@ exports.categoryEditPost = async (req, res) => {
 };
 
 exports.categoryDeletePost = async (req, res) => {
-
+    await db.deleteCategory(req.params.id);
+    res.redirect('/category');
 };

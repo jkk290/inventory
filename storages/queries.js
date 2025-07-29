@@ -42,15 +42,29 @@ async function editCategory(category) {
 
 async function addCategory(category) {
     await pool.query('INSERT INTO categories (name) VALUES ($1)', [category.name]);
-}
+};
+
+async function deleteCategory(id) {
+    const client = await pool.connect();
+
+    try {
+        await client.query('BEGIN');
+        await client.query('DELETE FROM items WHERE category = $1', [id]);
+        await client.query('DELETE FROM categories WHERE id = $1', [id]);
+        await client.query('COMMIT');
+    } catch (error) {
+        await client.query('ROLLBACK');
+        throw error;
+    };
+};
 
 async function addItem(item) {
     await pool.query('INSERT INTO items (name, stock, category) VALUES ($1, $2, $3)', [item.name, item.stock, item.category]);
-}
+};
 
 async function editItem(item) {
     await pool.query('UPDATE items SET name = $2, stock = $3, category = $4 WHERE id = $1', [item.id, item.name, item.stock, item.category]);
-}
+};
 
 async function deleteItem(id) {
     await pool.query('DELETE FROM items WHERE id = $1', [id]);
@@ -63,6 +77,7 @@ module.exports = {
     getCategory,
     addCategory,
     editCategory,
+    deleteCategory,
     addItem,
     editItem,
     deleteItem
