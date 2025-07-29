@@ -7,3 +7,15 @@ exports.itemsListGet = async (req, res) => {
         items: items
     });
 };
+
+exports.itemAddGet = (req, res) => {
+    res.render('itemAdd', {
+        title: 'Add New Item'
+    });
+};
+
+exports.itemAddPost = async (req, res) => {
+    const item = { name: req.body.itemName, category: req.body.itemCategory, stock: req.body.itemStock };
+    await db.addItem(item);
+    res.redirect('/');
+}

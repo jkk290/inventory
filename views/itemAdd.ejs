@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/">Back</a>
+    <form action="/item/add" method="POST">
+        <label for="itemName">Name: </label>
+        <input type="text" id="itemName" name="itemName">
+        <label for="itemCategory">Category: </label>
+        <input type="number" id="itemCategory" name="itemCategory">
+        <label for="itemStock">Stock: </label>
+        <input type="number" id="itemStock" name="itemStock">
+        <button type="submit">Add item</button>
+    </form>
+</body>
+</html>
