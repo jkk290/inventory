@@ -10,5 +10,6 @@ appRouter.get('/item/:id/edit', appController.itemEditGet);
 appRouter.post('/category/add', appController.categoryAddPost);
 appRouter.post('/item/add', appController.itemAddPost);
 appRouter.post('/item/:id/edit', appController.itemEditPost);
+appRouter.post('/item/:id/delete', appController.itemDeletePost);
 
 module.exports = appRouter;

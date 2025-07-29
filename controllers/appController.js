@@ -49,3 +49,8 @@ exports.itemEditPost = async (req, res) => {
     await db.editItem(item);
     res.redirect('/');
 };
+
+exports.itemDeletePost = async (req, res) => {
+    await db.deleteItem(req.params.id);
+    res.redirect('/');
+}
