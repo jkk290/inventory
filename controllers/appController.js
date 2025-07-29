@@ -22,6 +22,14 @@ exports.categoryAddGet = (req, res) => {
     });
 };
 
+exports.categoryEditGet = async (req, res) => {
+    const category = await db.getCategory(req.params.id);
+    res.render('categoryEdit', {
+        title: 'Edit Category',
+        category: category
+    });
+};
+
 exports.itemAddGet = async (req, res) => {
     const categories = await db.getAllCategories();
     res.render('itemAdd', {
@@ -45,6 +53,12 @@ exports.categoryAddPost = async (req, res) => {
     await db.addCategory(category);
     res.redirect('/');
 };
+
+exports.categoryEditPost = async (req, res) => {
+    const category = { id: req.params.id, name: req.body.categoryName };
+    await db.editCategory(category);
+    res.redirect('/category');
+}
 
 exports.itemAddPost = async (req, res) => {
     const item = { name: req.body.itemName, category: req.body.itemCategory, stock: req.body.itemStock };

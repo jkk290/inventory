@@ -27,6 +27,19 @@ async function getAllCategories() {
     };
 };
 
+async function getCategory(id) {
+    const { rows } = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+    if (rows.length > 0) {
+        return rows[0];
+    } else {
+        console.log('Category not found in database');
+    };
+};
+
+async function editCategory(category) {
+    await pool.query('UPDATE categories SET name = $2 WHERE id = $1', [category.id, category.name]);
+};
+
 async function addCategory(category) {
     await pool.query('INSERT INTO categories (name) VALUES ($1)', [category.name]);
 }
@@ -36,7 +49,7 @@ async function addItem(item) {
 }
 
 async function editItem(item) {
-    await pool.query('UPDATE items set name = $2, stock = $3, category = $4 WHERE id = $1', [item.id, item.name, item.stock, item.category]);
+    await pool.query('UPDATE items SET name = $2, stock = $3, category = $4 WHERE id = $1', [item.id, item.name, item.stock, item.category]);
 }
 
 async function deleteItem(id) {
@@ -47,7 +60,9 @@ module.exports = {
     getAllItems,
     getItem,
     getAllCategories,
+    getCategory,
     addCategory,
+    editCategory,
     addItem,
     editItem,
     deleteItem
