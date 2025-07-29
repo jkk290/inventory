@@ -1,5 +1,13 @@
 const db = require('../storages/queries');
 
+exports.categoryListGet = async (req, res) => {
+    const categories = await db.getAllCategories();
+    res.render('categoryList', {
+        title: 'All Categories',
+        categories: categories
+    });
+};
+
 exports.itemsListGet = async (req, res) => {
     const items = await db.getAllItems();
     res.render('itemList', {
