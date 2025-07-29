@@ -1,7 +1,7 @@
 const pool = require('./pool');
 
 async function getAllItems() {
-    const { rows } = await pool.query('SELECT * FROM items');
+    const { rows } = await pool.query('SELECT i.name, c.name as category, i.stock FROM items as i JOIN categories as c ON i.category = c.id');
     if (rows.length > 0) {
         return rows;
     } else {
