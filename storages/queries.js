@@ -9,6 +9,15 @@ async function getAllItems() {
     };    
 };
 
+async function getAllCategories() {
+    const { rows } = await pool.query('SELECT * FROM categories');
+    if (rows.length > 0) {
+        return rows;
+    } else {
+        console.log('No categories in database');
+    };
+};
+
 async function addCategory(category) {
     await pool.query('INSERT INTO categories (name) VALUES ($1)', [category.name]);
 }
@@ -19,6 +28,7 @@ async function addItem(item) {
 
 module.exports = {
     getAllItems,
+    getAllCategories,
     addCategory,
     addItem,
 };

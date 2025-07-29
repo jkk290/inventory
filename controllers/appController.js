@@ -14,9 +14,11 @@ exports.categoryAddGet = (req, res) => {
     });
 };
 
-exports.itemAddGet = (req, res) => {
+exports.itemAddGet = async (req, res) => {
+    const categories = await db.getAllCategories();
     res.render('itemAdd', {
-        title: 'Add Item'
+        title: 'Add Item',
+        categories: categories
     });
 };
 
